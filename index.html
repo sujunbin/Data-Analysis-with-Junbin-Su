@@ -3,48 +3,1063 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>数据分析｜苏俊斌</title>
+  <meta name="description"
+        content="数据分析：网络的视角。面向新闻传播学及相关社会科学领域的研究生，提供统计分析、概率与推断、社会网络分析课程课件与教学资源。">
+  <meta name="color-scheme" content="light">
+  <title>数据分析：网络的视角 | Data Analysis: A Network Approach</title>
+
   <style>
-    body {
-      max-width: 860px;
-      margin: 60px auto;
-      padding: 0 24px;
-      font-family: system-ui, sans-serif;
-      line-height: 1.8;
-      color: #243447;
-      background: #fafafa;
+    :root {
+      --paper: #f7f6f2;
+      --white: #ffffff;
+      --ink: #22332f;
+      --muted: #61706a;
+      --green: #225b4b;
+      --green-dark: #174536;
+      --pale: #eaf0e9;
+      --line: #dce2db;
+      --gold: #a67b36;
+      --width: 1080px;
     }
-    h1 { color: #17476b; }
-    h2 { margin-top: 36px; }
-    a { color: #176b9c; }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 16px;
+      line-height: 1.85;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--green);
+      text-underline-offset: 4px;
+    }
+
+    a:hover {
+      color: var(--green-dark);
+    }
+
+    a:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 5px;
+      border-radius: 3px;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -80px;
+      left: 16px;
+      z-index: 20;
+      padding: 8px 16px;
+      background: var(--white);
+    }
+
+    .skip-link:focus {
+      top: 10px;
+    }
+
+    .container {
+      width: min(var(--width), calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--paper);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      min-height: 76px;
+    }
+
+    .brand {
+      color: var(--ink);
+      font-size: 17px;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .brand span {
+      margin-left: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 400;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 24px;
+    }
+
+    nav a {
+      color: var(--muted);
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      color: var(--green);
+      text-decoration: underline;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 88px 0 72px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 280px;
+      align-items: center;
+      gap: 48px;
+    }
+
+    .eyebrow {
+      margin: 0 0 16px;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Songti SC", "Noto Serif CJK SC",
+        "Source Han Serif SC", serif;
+      font-size: clamp(34px, 4.8vw, 54px);
+      font-weight: 600;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+    }
+
+    .english-title {
+      margin: 14px 0 24px;
+      color: var(--muted);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(18px, 2.5vw, 24px);
+    }
+
+    .hero-tagline {
+      margin: 0 0 14px;
+      font-size: 19px;
+      font-weight: 600;
+    }
+
+    .hero-description {
+      max-width: 650px;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 10px 22px;
+      border: 1px solid var(--green);
+      border-radius: 5px;
+      background: var(--green);
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .button:hover {
+      background: var(--green-dark);
+      color: var(--white);
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--green);
+    }
+
+    .button.secondary:hover {
+      background: var(--pale);
+    }
+
+    .network-art {
+      width: 100%;
+      max-width: 280px;
+      color: var(--green);
+    }
+
+    .network-art line {
+      stroke: currentColor;
+      stroke-width: 1.2;
+      opacity: 0.26;
+    }
+
+    .network-art circle {
+      fill: var(--paper);
+      stroke: currentColor;
+      stroke-width: 2;
+    }
+
+    .network-art .filled {
+      fill: currentColor;
+    }
+
+    .network-art .accent {
+      fill: var(--gold);
+      stroke: var(--gold);
+    }
+
+    .resource-summary {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 28px;
+      margin-top: 38px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .resource-summary strong {
+      color: var(--green);
+      font-size: 18px;
+    }
+
+    section {
+      padding: 58px 0;
+    }
+
+    section + section {
+      border-top: 1px solid var(--line);
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      margin: 0;
+      font-family: "Songti SC", "Noto Serif CJK SC",
+        "Source Han Serif SC", serif;
+      font-size: 29px;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .section-heading span {
+      color: var(--muted);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 15px;
+    }
+
+    .prose {
+      max-width: 880px;
+    }
+
+    .prose p {
+      margin: 0 0 18px;
+    }
+
+    .prose p:last-child {
+      margin-bottom: 0;
+    }
+
+    .learning-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 28px;
+      margin-top: 32px;
+    }
+
+    .learning-item {
+      padding-top: 18px;
+      border-top: 3px solid var(--green);
+    }
+
+    .learning-item .number {
+      color: var(--gold);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 14px;
+    }
+
+    h3 {
+      margin: 8px 0 10px;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .learning-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .section-intro {
+      max-width: 850px;
+      margin: 0 0 24px;
+      color: var(--muted);
+    }
+
+    .note {
+      padding: 14px 18px;
+      border-left: 3px solid var(--gold);
+      background: #f0eee5;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .module {
+      margin-top: 32px;
+    }
+
+    .module-heading {
+      margin: 0;
+      padding: 12px 18px;
+      border: 1px solid var(--line);
+      background: var(--pale);
+      color: var(--green);
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .lecture-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .lecture {
+      display: grid;
+      grid-template-columns: 48px minmax(0, 1fr) auto;
+      align-items: start;
+      gap: 18px;
+      padding: 22px 18px;
+      border: 1px solid var(--line);
+      border-top: 0;
+      background: var(--white);
+    }
+
+    .lecture-number {
+      padding-top: 2px;
+      color: var(--gold);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 23px;
+      line-height: 1.5;
+    }
+
+    .lecture h4 {
+      margin: 0 0 6px;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.6;
+    }
+
+    .lecture h4 a {
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .lecture h4 a:hover {
+      color: var(--green);
+      text-decoration: underline;
+    }
+
+    .lecture p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .lecture-link {
+      align-self: center;
+      white-space: nowrap;
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    .lecture-link:hover {
+      text-decoration: underline;
+    }
+
+    .supplement {
+      display: grid;
+      grid-template-columns: 120px minmax(0, 1fr);
+      gap: 28px;
+      padding: 30px;
+      border: 1px solid var(--line);
+      background: var(--white);
+    }
+
+    .poster-symbol {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 130px;
+      border: 1px solid var(--line);
+      background: var(--pale);
+      color: var(--green);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 23px;
+      font-style: italic;
+    }
+
+    .supplement h3 {
+      margin-top: 0;
+    }
+
+    .supplement p {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .reading-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 40px;
+    }
+
+    .reading-grid h3 {
+      margin-top: 0;
+      color: var(--green);
+    }
+
+    .reading-grid p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
     footer {
-      margin-top: 60px;
-      border-top: 1px solid #ddd;
-      padding-top: 16px;
-      color: #666;
+      padding: 30px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px 24px;
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    footer a {
+      margin-left: 16px;
+    }
+
+    @media (max-width: 800px) {
+      .header-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+        padding-block: 14px;
+      }
+
+      .brand span {
+        display: none;
+      }
+
+      nav {
+        gap: 8px 20px;
+      }
+
+      .hero {
+        padding: 56px 0 44px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .network-art {
+        display: none;
+      }
+
+      .learning-grid {
+        grid-template-columns: 1fr;
+        gap: 22px;
+      }
+
+      .reading-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .container {
+        width: calc(100% - 32px);
+      }
+
+      section {
+        padding: 40px 0;
+      }
+
+      .hero-tagline {
+        font-size: 17px;
+      }
+
+      .lecture {
+        grid-template-columns: 32px minmax(0, 1fr);
+        gap: 12px;
+        padding: 18px 14px;
+      }
+
+      .lecture-link {
+        grid-column: 2;
+        justify-self: start;
+      }
+
+      .supplement {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 22px;
+      }
+
+      .poster-symbol {
+        min-height: 80px;
+      }
+
+      footer a {
+        margin-left: 0;
+        margin-right: 16px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+
+    @media print {
+      .site-header {
+        position: static;
+      }
+
+      nav,
+      .network-art,
+      .skip-link {
+        display: none;
+      }
+
+      body {
+        background: white;
+        color: black;
+      }
+
+      .hero,
+      section {
+        padding-block: 24px;
+      }
+
+      .lecture,
+      .supplement {
+        break-inside: avoid;
+      }
     }
   </style>
 </head>
+
 <body>
-  <h1>数据分析</h1>
-  <p>Data Analysis with Prof. Junbin Su</p>
+  <a class="skip-link" href="#main">跳转到正文</a>
 
-  <h2>课程介绍</h2>
-  <p>
-    本课程以社会网络分析为特色，关注社会科学研究中的数据分析。
-    本网站用于分享课程课件及配套教学资源。
-  </p>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#home">
+        数据分析
+        <span>A Network Approach</span>
+      </a>
 
-  <h2>课程资源</h2>
-  <p>课程材料正在整理，将陆续更新。</p>
+      <nav aria-label="主导航">
+        <a href="#about">课程简介</a>
+        <a href="#lectures">课程课件</a>
+        <a href="#resources">补充资源</a>
+        <a href="#guide">学习与引用</a>
+      </nav>
+    </div>
+  </header>
 
-  <h2>课程仓库</h2>
-  <p>
-    <a href="https://github.com/sujunbin/Data-Analysis-with-Junbin-Su">
-      浏览 GitHub 课程仓库
-    </a>
-  </p>
+  <main id="main">
+    <div class="hero" id="home">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <p class="eyebrow">研究方法 · 统计分析 · 社会网络</p>
+            <h1>数据分析：网络的视角</h1>
+            <p class="english-title">
+              Data Analysis: A Network Approach
+            </p>
 
-  <footer>苏俊斌｜《数据分析》课程</footer>
+            <p class="hero-tagline">
+              从问题出发，用数据理解现象，用关系理解社会。
+            </p>
+
+            <p class="hero-description">
+              新闻如何传播？受众之间如何形成联系？
+              我们观察到的差异与关联，能够支持怎样的判断？
+              本课程将统计分析与社会网络分析相结合，
+              探索如何把新闻传播问题转化为可以测量、分析和讨论的经验研究。
+            </p>
+
+            <div class="actions">
+              <a class="button" href="#lectures">浏览课程课件</a>
+              <a class="button secondary"
+                 href="https://zenodo.org/communities/junbin-su-data-analysis/records">
+                访问 Zenodo 资源库
+              </a>
+            </div>
+          </div>
+
+          <!-- 原创示意图：仅作关系网络的视觉表达，不代表实际研究数据。 -->
+          <svg class="network-art"
+               viewBox="0 0 280 280"
+               aria-hidden="true"
+               focusable="false">
+            <line x1="140" y1="140" x2="68" y2="58"/>
+            <line x1="140" y1="140" x2="205" y2="48"/>
+            <line x1="140" y1="140" x2="245" y2="128"/>
+            <line x1="140" y1="140" x2="213" y2="224"/>
+            <line x1="140" y1="140" x2="94" y2="244"/>
+            <line x1="140" y1="140" x2="33" y2="167"/>
+            <line x1="68" y1="58" x2="205" y2="48"/>
+            <line x1="68" y1="58" x2="33" y2="167"/>
+            <line x1="205" y1="48" x2="245" y2="128"/>
+            <line x1="245" y1="128" x2="213" y2="224"/>
+            <line x1="213" y1="224" x2="94" y2="244"/>
+            <line x1="94" y1="244" x2="33" y2="167"/>
+            <line x1="68" y1="58" x2="213" y2="224"/>
+            <line x1="205" y1="48" x2="94" y2="244"/>
+            <circle class="filled" cx="140" cy="140" r="15"/>
+            <circle cx="68" cy="58" r="10"/>
+            <circle class="filled" cx="205" cy="48" r="8"/>
+            <circle cx="245" cy="128" r="12"/>
+            <circle class="accent" cx="213" cy="224" r="10"/>
+            <circle cx="94" cy="244" r="8"/>
+            <circle class="filled" cx="33" cy="167" r="9"/>
+          </svg>
+        </div>
+
+        <div class="resource-summary" aria-label="本站资源概览">
+          <span><strong>12</strong> 讲课程课件</span>
+          <span><strong>1</strong> 张教学海报</span>
+          <span>分讲下载 · 独立引用</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <section id="about" aria-labelledby="about-title">
+        <div class="section-heading">
+          <h2 id="about-title">课程简介</h2>
+          <span>About the course</span>
+        </div>
+
+        <div class="prose">
+          <p>
+            本课程面向新闻传播学及相关人文社会科学领域的研究生，
+            为初涉学术研究的学习者提供系统、严谨且具有批判意识的定量研究基础。
+            本课程入选厦门大学首批研究生示范课程建设项目并验收达标。
+          </p>
+
+          <p>
+            课程以统计学和概率论为基础，从概念、构念、变量与测量入手，
+            逐步介绍描述统计、相关分析、概率分布、抽样与统计推断、
+            假设检验、方差分析和线性回归。
+            在此基础上，课程进一步引入社会网络分析，从行动者之间的关系出发，
+            考察网络中的中心性、声望、位置与角色。
+          </p>
+
+          <p>
+            学习不仅在于掌握计算方法和软件操作，更在于理解：
+            研究问题如何决定方法选择，数据能够支持什么结论，
+            以及结论受到哪些条件的限制。
+            课程通过新闻传播研究案例，将理论、研究设计、经验材料与分析方法联系起来，
+            同时强调研究伦理、学术规范，以及人工智能工具的规范使用与如实披露。
+          </p>
+        </div>
+
+        <div class="learning-grid">
+          <article class="learning-item">
+            <span class="number">01 / 问题与测量</span>
+            <h3>让研究问题成为可分析的问题</h3>
+            <p>
+              从理论概念形成可观察的指标与变量，
+              理解概念化、操作化和研究设计之间的联系。
+            </p>
+          </article>
+
+          <article class="learning-item">
+            <span class="number">02 / 数据与推断</span>
+            <h3>在不确定性中作出审慎判断</h3>
+            <p>
+              掌握描述、比较与建模的基本方法，
+              理解概率与统计推断的逻辑，辨认相关与因果的区别。
+            </p>
+          </article>
+
+          <article class="learning-item">
+            <span class="number">03 / 关系与结构</span>
+            <h3>从社会网络中发现关系的力量</h3>
+            <p>
+              超越个体属性，从关系与结构出发，
+              理解行动者的中心性、声望、位置及角色。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="lectures" aria-labelledby="lectures-title">
+        <div class="section-heading">
+          <h2 id="lectures-title">课程课件</h2>
+          <span>Lecture materials</span>
+        </div>
+
+        <p class="section-intro">
+          课件按讲次分别存档于 Zenodo。
+          点击各讲标题或“查看与下载”，可进入对应资源页面，
+          查看内容说明、下载 PDF，并获取 DOI 与引用信息。
+        </p>
+
+        <p class="note">
+          第 01—06 讲为中英双语课件，第 07—12 讲以中文为主。
+          以下中文主题名称为浏览导引；正式引用时请以对应资源页面的题名与版本信息为准。
+        </p>
+
+        <div class="module">
+          <h3 class="module-heading">第一部分：从研究问题到数据描述</h3>
+          <ol class="lecture-list">
+            <li class="lecture">
+              <span class="lecture-number" aria-label="第1讲">01</span>
+              <div>
+                <h4>
+                  <a href="https://zenodo.org/records/23862538">
+                    导言：数据分析如何服务于实证社会科学研究？
+                  </a>
+                </h4>
+                <p>理论、研究问题、假设、研究设计与经验证据。</p>
+              </div>
+              <a class="lecture-link"
+                 href="https://zenodo.org/records/23862538"
+                 aria-label="第1讲：查看与下载">查看与下载 ↗</a>
+            </li>
+
+            <li class="lecture">
+              <span class="lecture-number" aria-label="第2讲">02</span>
+              <div>
+                <h4>
+                  <a href="https://zenodo.org/records/23890001">
+                    认识事实：概念、构念、变量与测量
+                  </a>
+                </h4>
+                <p>概念化与操作化、测量层次、信度与效度、数据伦理。</p>
+              </div>
+              <a class="lecture-link"
+                 href="https://zenodo.org/records/23890001"
+                 aria-label="第2讲：查看与下载">查看与下载 ↗</a>
+            </li>
+
+            <li class="lecture">
+              <span class="lecture-number" aria-label="第3讲">03</span>
+              <div>
+                <h4>
+                  <a href="https://zenodo.org/records/23902486">
+                    描述统计：给数据画一张可视的图像
+                  </a>
+                </h4>
+                <p>集中趋势、离散程度、分布特征与数据可视化。</p>
+              </div>
+              <a class="lecture-link"
+                 href="https://zenodo.org/records/23902486"
+                 aria-label="第3讲：查看与下载">查看与下载 ↗</a>
+            </li>
+
+            <li class="lecture">
+              <span class="lecture-number" aria-label="第4讲">04</span>
+              <div>
+                <h4>
+                  <a href="https://zenodo.org/records/23903134">
+                    发现联系：揭示变量之间的关联
+                  </a>
+                </h4>
+                <p>协方差、Pearson 相关、Spearman 与 Kendall 秩相关。</p>
+              </div>
+              <a class="lecture-link"
+                 href="https://zenodo.org/records/23903134"
+                 aria-label="第4讲：查看与下载">查看与下载 ↗</a>
+            </li>
+          </ol>
+        </div>
+
+        <div class="module">
+          <h3 class="module-heading">第二部分：从概率到统计推断</h3>
+          <ol class="lecture-list" start="5">
+            <li class="lecture">
+              <span class="lecture-number" aria-label="第5讲">05</span>
+              <div>
+                <h4>
+                  <a href="https://zenodo.org/records/23906591">
+                    走进概率：理解“不确定性”中的“确定性”
+                  </a>
+                </h4>
+                <p>随机事件、条件概率、全概率公式与贝叶斯定理。</p>
+              </div>
+              <a class="lecture-link"
+                 href="https://zenodo.org/records/23906591"
+                 aria-label="第5讲：查看与下载">查看与下载 ↗</a>
+            </li>
+
+            <li class="lecture">
+              <span class="lecture-number" aria-label="第6讲">06</span>
+              <div>
+                <h4>
+                  <a href="https://zenodo.org/records/23906617">
+                    概率分布：理解随机变量的分布规律
+                  </a>
+                </h4>
+                <p>离散与连续分布、正态分布、期望、方差与中心极限定理。</p>
+              </div>
+              <a class="lecture-link"
+                 href="https://zenodo.org/records/23906617"
+                 aria-label="第6讲：查看与下载">查看与下载 ↗</a>
+            </li>
+
+            <li class="lecture">
+              <span class="lecture-number" aria-label="第7讲">07</span>
+              <div>
+                <h4>
+                  <a href="https://zenodo.org/records/23934624">
+                    以小见大：怎样通过样本推断总体
+                  </a>
+                </h4>
+                <p>抽样、抽样分布及卡方、t 与 F 分布。</p>
+              </div>
+              <a class="lecture-link"
+                 href="https://zenodo.org/records/23934624"
+                 aria-label="第7讲：查看与下载">查看与下载 ↗</a>
+            </li>
+
+            <li class="lecture">
+              <span class="lecture-number" aria-label="第8讲">08</span>
+              <div>
+                <h4>
+                  <a href="https://zenodo.org/records/23934641">
+                    假设检验：统计结果是“真实”还是“巧合”？
+                  </a>
+                </h4>
+                <p>参数估计、置信区间、p 值、检验错误与统计功效。</p>
+              </div>
+              <a class="lecture-link"
+                 href="https://zenodo.org/records/23934641"
+                 aria-label="第8讲：查看与下载">查看与下载 ↗</a>
+            </li>
+          </ol>
+        </div>
+
+        <div class="module">
+          <h3 class="module-heading">第三部分：差异分析与统计建模</h3>
+          <ol class="lecture-list" start="9">
+            <li class="lecture">
+              <span class="lecture-number" aria-label="第9讲">09</span>
+              <div>
+                <h4>
+                  <a href="https://zenodo.org/records/23934660">
+                    辨析影响：因素变化是否对应结果差异？
+                  </a>
+                </h4>
+                <p>单因素与双因素方差分析、主效应、交互效应与事后比较。</p>
+              </div>
+              <a class="lecture-link"
+                 href="https://zenodo.org/records/23934660"
+                 aria-label="第9讲：查看与下载">查看与下载 ↗</a>
+            </li>
+
+            <li class="lecture">
+              <span class="lecture-number" aria-label="第10讲">10</span>
+              <div>
+                <h4>
+                  <a href="https://zenodo.org/records/23934670">
+                    线性回归：从理解关联到预测未来
+                  </a>
+                </h4>
+                <p>简单线性回归、最小二乘法、模型检验与决定系数。</p>
+              </div>
+              <a class="lecture-link"
+                 href="https://zenodo.org/records/23934670"
+                 aria-label="第10讲：查看与下载">查看与下载 ↗</a>
+            </li>
+          </ol>
+        </div>
+
+        <div class="module">
+          <h3 class="module-heading">第四部分：社会网络的结构、位置与角色</h3>
+          <ol class="lecture-list" start="11">
+            <li class="lecture">
+              <span class="lecture-number" aria-label="第11讲">11</span>
+              <div>
+                <h4>
+                  <a href="https://zenodo.org/records/23934673">
+                    中心性与声望：理解社会网络结构
+                  </a>
+                </h4>
+                <p>网络表示、中心性、声望及其在传播研究中的应用。</p>
+              </div>
+              <a class="lecture-link"
+                 href="https://zenodo.org/records/23934673"
+                 aria-label="第11讲：查看与下载">查看与下载 ↗</a>
+            </li>
+
+            <li class="lecture">
+              <span class="lecture-number" aria-label="第12讲">12</span>
+              <div>
+                <h4>
+                  <a href="https://zenodo.org/records/23934682">
+                    位置与角色：理解社会网络中的结构等价
+                  </a>
+                </h4>
+                <p>结构等价、CONCOR、聚类、块模型与位置关系。</p>
+              </div>
+              <a class="lecture-link"
+                 href="https://zenodo.org/records/23934682"
+                 aria-label="第12讲：查看与下载">查看与下载 ↗</a>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="resources" aria-labelledby="resources-title">
+        <div class="section-heading">
+          <h2 id="resources-title">教学案例与补充资源</h2>
+          <span>Beyond the lectures</span>
+        </div>
+
+        <article class="supplement">
+          <div class="poster-symbol" aria-hidden="true">
+            P(A | F)
+          </div>
+
+          <div>
+            <p class="eyebrow">单页教学海报 · 贝叶斯定理</p>
+            <h3>从证据回溯来源：用贝叶斯定理分析一则失实报道</h3>
+            <p>
+              当一则转载报道被发现失实时，如何结合不同媒体的供稿比例与失实率，
+              判断它更可能来自哪个来源？
+              这张教学海报通过假设数据与自然频数，
+              展示从先验概率到后验概率的推理过程，
+              并说明两种条件概率为何不能混同。
+              案例中的数字仅作教学示例，不指向实际媒体。
+            </p>
+            <a href="https://zenodo.org/records/23935336">
+              查看与下载教学海报 ↗
+            </a>
+          </div>
+        </article>
+      </section>
+
+      <section id="guide" aria-labelledby="guide-title">
+        <div class="section-heading">
+          <h2 id="guide-title">学习与引用</h2>
+          <span>Study and citation</span>
+        </div>
+
+        <div class="reading-grid">
+          <div>
+            <h3>把方法放回研究问题中</h3>
+            <p>
+              建议按讲次循序阅读，并结合案例与练习理解概念。
+              面对每一种方法，都可以追问：
+              分析对象是什么？变量或关系如何测量？
+              方法的前提是否满足？结果能够支持多大范围的解释？
+            </p>
+            <p>
+              使用人工智能辅助学习与研究时，
+              应核查其生成的事实、计算与文献，
+              并按课程或研究要求如实披露使用情况。
+            </p>
+          </div>
+
+          <div>
+            <h3>引用具体讲次与版本</h3>
+            <p>
+              每讲课件分别存档。引用时，请使用对应资源页面提供的
+              作者、年份、题名、版本与 DOI 信息，
+              并按所需格式整理参考文献。
+            </p>
+            <p>
+              使用或改编材料前，请查看各条记录的许可说明。
+              课件中另有来源标注的第三方材料，
+              应同时留意其使用条件。
+            </p>
+          </div>
+        </div>
+
+        <div class="actions">
+          <a class="button"
+             href="https://zenodo.org/communities/junbin-su-data-analysis/records">
+            查看全部资源与后续更新
+          </a>
+          <a class="button secondary"
+             href="https://github.com/sujunbin/Data-Analysis-with-Junbin-Su">
+            访问 GitHub 仓库
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <p>数据分析：网络的视角 · Data Analysis: A Network Approach</p>
+      <p>
+        <a href="https://zenodo.org/communities/junbin-su-data-analysis/records">
+          Zenodo
+        </a>
+        <a href="https://github.com/sujunbin/Data-Analysis-with-Junbin-Su">
+          GitHub
+        </a>
+        <a href="#home">返回顶部 ↑</a>
+      </p>
+    </div>
+  </footer>
 </body>
 </html>
